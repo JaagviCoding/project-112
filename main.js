@@ -1,5 +1,4 @@
 prediction_1 = "";
-prediction_2 = "";
 Webcam.set({
 width:350,
 height:300,
@@ -26,9 +25,8 @@ function modelLoaded()
 function speak()
 {
     var  synth = window.speechSynthesis;
-    speak_data_1 = "the first prediction is"+prediction_1;
-    speak_data_2 = "the second prediction is"+prediction_2;
-    var utterThis = new SpeechSynthesisUtterance(speak_data_1+speak_data_2);
+    speak_data_1 = "the prediction is"+prediction_1;
+    var utterThis = new SpeechSynthesisUtterance(speak_data_1);
     utterThis.rate = 0.5;
     synth.speak(utterThis);
 }
@@ -46,45 +44,27 @@ if(error)
 else{
     console.log(results);
     document.getElementById("result_emotion_name").innerHTML = results[0].label;
-    document.getElementById("result_emotion_name2").innerHTML = results[1].label;
     prediction_1 = results[0].label;
-    prediction_2 = results[1].label;
     speak();
-    if(results[0].label=="happy")
+    if(results[0].label=="clap")
     {
-        document.getElementById("update_emoji").innerHTML = "&#128522;";
+        document.getElementById("update_emoji").innerHTML = "&#128079;";
     
     }
-    if(results[0].label=="sad")
+    if(results[0].label=="peace sign")
     {
-        document.getElementById("update_emoji").innerHTML = "&#128577;";
+        document.getElementById("update_emoji").innerHTML = "&#9996;";
     }
-    if(results[0].label=="angry")
+    if(results[0].label=="thumbs up")
     {
-        document.getElementById("update_emoji").innerHTML = "&#128545;";
+        document.getElementById("update_emoji").innerHTML = "&#128077;";
     }
-    if(results[0].label=="shocked")
+    if(results[0].label=="high five")
     {
-        document.getElementById("update_emoji").innerHTML = "&#128561;";
+        document.getElementById("update_emoji").innerHTML = "&#9995;";
     }
 
-    if(results[1].label=="happy")
-    {
-        document.getElementById("update_emoji2").innerHTML = "&#128522;";
-    
-    }
-    if(results[1].label=="sad")
-    {
-        document.getElementById("update_emoji2").innerHTML = "&#128577;";
-    }
-    if(results[1].label=="angry")
-    {
-        document.getElementById("update_emoji2").innerHTML = "&#128545;";
-    }
-    if(results[1].label=="shocked")
-    {
-        document.getElementById("update_emoji2").innerHTML = "&#128561;";
-    }
+   
 }
 
 }
